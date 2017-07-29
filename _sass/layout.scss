@@ -1,0 +1,38 @@
+/* Page Layout */
+
+@media only screen and ( min-width: 640px ) {
+
+  // Grid support
+  @supports ( display: grid ) {
+    .page { display: grid; }
+
+    .page {
+      grid-template-columns: repeat( 5, 1fr );
+      grid-template-rows: 128px 48px 1fr;
+      grid-template-areas:
+        "header header header header header"
+        "nav nav nav nav nav"
+        "main main main main sidebar";
+
+      @include e( 'title' ) {
+        grid-column: header;
+        grid-row: header;
+      }
+
+      @include e( 'header' ) {
+        grid-column: nav;
+        grid-row: nav;
+      }
+
+      @include e( 'main' ) {
+        grid-column: main;
+        grid-row: main;
+      }
+
+      @include e( 'sidebar' ) {
+        grid-column: sidebar;
+        grid-row: sidebar;
+      }
+    }
+  }
+}
