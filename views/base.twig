@@ -10,26 +10,35 @@
 <body>
   <div class="page">
 
+    {# Site Header #}
     <header class="page__header">
     {% block header %}
       {% include 'template-parts/nav.twig' %}
     {% endblock %}
     </header>
 
+    {# Site Title #}
     <h1 class="page__title">
     {% block title %}
       {{ site.name }}
     {% endblock %}
     </h1>
 
+    {# Site main content #}
     <main class="page__main">
       {% block content %}{% endblock %}
     </main>
 
-    <aside class="page__sidebar">
-    {% block sidebar %}
+    <footer class="page__footer">
+    {% block footer %}
+      {# Social Nav loop #}
+      <nav class="social">
+      {% for item in menu_social.get_items %}
+        <a href="{{ item.link }}" class="social__item">{{ item.title }}</a>
+      {% endfor %}
+      </nav>
     {% endblock %}
-    </aside>
+    </footer>
   </div>
 
   {{ wp_footer }}
