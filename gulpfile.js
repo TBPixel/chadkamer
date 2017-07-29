@@ -22,7 +22,7 @@
 
     livereload.listen();
 
-    gulp.watch( './_sass/**/*.{sass,scss}', ['styles'] );
+    gulp.watch( './_sass/**/**/*.{sass,scss}', ['styles'] );
   });
 
   // Run Gulp Task
