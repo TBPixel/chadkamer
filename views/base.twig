@@ -11,19 +11,25 @@
   <div class="page">
 
     <header class="page__header">
-    {% block page__header %}
+    {% block header %}
       {% include 'template-parts/nav.twig' %}
     {% endblock %}
     </header>
 
-    {% block page__title %}
-    <h1 class="page__title">{{ site.name }}</h1>
+    <h1 class="page__title">
+    {% block title %}
+      {{ site.name }}
     {% endblock %}
+    </h1>
 
     <main class="page__main">
-      {% block content %}
-      {% endblock %}
+      {% block content %}{% endblock %}
     </main>
+
+    <aside class="page__sidebar">
+    {% block sidebar %}
+    {% endblock %}
+    </aside>
   </div>
 
   {{ wp_footer }}
