@@ -5,20 +5,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-  <title>{{ wp_title }}</title>
-
-  <link rel="stylesheet" type="text/css" href="{{theme.link}}/style.css" media="screen">
-
   {{ wp_head }}
 </head>
 <body>
   <div class="page">
 
     <header class="page__header">
-
+    {% block page__header %}
+      {% include 'template-parts/nav.twig' %}
+    {% endblock %}
     </header>
 
+    {% block page__title %}
     <h1 class="page__title">{{ site.name }}</h1>
+    {% endblock %}
 
     <main class="page__main">
       {% block content %}
