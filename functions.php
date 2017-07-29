@@ -75,7 +75,8 @@
   function add_to_context( $data )
   {
 
-    $data['menu'] = new TimberMenu();
+    $data['menu_main']   = new TimberMenu( 'main' );
+    $data['menu_social'] = new TimberMenu( 'social' );
 
     return $data;
   }
