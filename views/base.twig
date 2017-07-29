@@ -20,7 +20,7 @@
     {# Site Title #}
     <h1 class="page__title">
     {% block title %}
-      {{ site.name }}
+      <a href="{{ site.link }}">{{ site.name }}</a>
     {% endblock %}
     </h1>
 
@@ -42,5 +42,14 @@
   </div>
 
   {{ wp_footer }}
+  {% block scripts %}
+  <script>
+  WebFont.load({
+    google: {
+      families: [ 'Open Sans Condensed', 'Lora' ]
+    }
+  });
+  </script>
+  {% endblock %}
 </body>
 </html>

@@ -61,7 +61,11 @@
   */
   function chadkamer_enqueue()
   {
+    // Site stylesheet
     wp_enqueue_style( 'chadkamer-style', get_stylesheet_uri() );
+
+    // Web Font Loader
+    wp_enqueue_script( 'chadkamer-webfontloader', 'https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js', [], true );
 
     // Remove jQuery from all but WordPress admin
     if ( !is_admin() ) wp_deregister_script( 'jquery' );
