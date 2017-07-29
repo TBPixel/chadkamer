@@ -12,27 +12,30 @@
       grid-template-areas:
         "header header header header header"
         "nav nav nav nav nav"
-        "main main main main sidebar";
-
-      @include e( 'title' ) {
-        grid-column: header;
-        grid-row: header;
-      }
-
-      @include e( 'header' ) {
-        grid-column: nav;
-        grid-row: nav;
-      }
-
-      @include e( 'main' ) {
-        grid-column: main;
-        grid-row: main;
-      }
-
-      @include e( 'sidebar' ) {
-        grid-column: sidebar;
-        grid-row: sidebar;
-      }
+        "main main main main footer";
     }
+  }
+}
+
+
+.page {
+  @include e( 'title' ) {
+    grid-column: header;
+    grid-row: header;
+  }
+
+  @include e( 'header' ) {
+    grid-column: nav;
+    grid-row: nav;
+  }
+
+  @include e( 'main' ) {
+    grid-column: main;
+    grid-row: main;
+  }
+
+  @include e( 'footer' ) {
+    grid-column: footer;
+    grid-row: footer;
   }
 }
