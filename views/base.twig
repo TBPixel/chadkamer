@@ -20,7 +20,7 @@
     {# Site Title #}
     <h1 class="page__title">
     {% block title %}
-      <a href="{{ site.link }}">{{ site.name }}</a>
+      {{ post.get_field( 'hero__title' ) }}
     {% endblock %}
     </h1>
 
@@ -46,7 +46,7 @@
   <script>
   WebFont.load({
     google: {
-      families: [ 'Open Sans Condensed', 'Lora' ]
+      families: [ 'Work Sans:300,400,700' ]
     }
   });
   </script>
