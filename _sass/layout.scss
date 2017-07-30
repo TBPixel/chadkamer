@@ -22,14 +22,6 @@
   @include e( 'title' ) {
     grid-column: header;
     grid-row: header;
-
-    margin-top: 16px;
-    margin-bottom: 16px;
-
-    font-family: $font-heading;
-    font-size: 32px;
-    font-weight: $bold;
-    text-align: center;
   }
 
   @include e( 'header' ) {
