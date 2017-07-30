@@ -8,5 +8,10 @@
  */
 
   $context = Timber::get_context();
+
+  // Page Post Context
+  $post = new TimberPost();
+  $context['post'] = $post;
+
   Timber::render( 'views/home.twig', $context );
 ?>
