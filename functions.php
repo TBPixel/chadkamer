@@ -9,9 +9,14 @@
 
 
   /**
-    * Theme Setup
+  * Theme Setup
   */
   require_once 'inc/theme-setup.php';
+
+  /**
+  * Admin Init
+  */
+  require_once 'inc/admin-init.php';
 
 
   /**
