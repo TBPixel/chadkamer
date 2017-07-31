@@ -1,12 +1,15 @@
 /* Home content section
 
 .home-section
+  display: flex
+  flex-wrap: wrap
+  align-items: flex-start
   padding-bottom: 32px
 
   +e( 'title' )
-    min-width: 196px
-    width: 25%
+    flex: 0 1 196px
 
+    margin-top: 0
     padding: 16px
 
     background-color: $color-red
@@ -14,16 +17,24 @@
     color: $color-white
     text-align: right
 
-  & > p
-    width: 100%
-    max-width: 600px
+  +e( 'content' )
+    flex: 0 1 100%
 
     padding-left: 16px
     padding-right: 16px
 
 
 @media only screen and ( min-width: 640px )
-
-  .home-section > p
+  .home-section__content
     padding-left: 32px
     padding-right: 32px
+
+
+
+@media only screen and ( min-width: 960px )
+  .home-section
+    flex-wrap: nowrap
+
+    +e( 'content' )
+      max-width: 600px
+      margin-left: 10%

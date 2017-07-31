@@ -10,7 +10,9 @@
 <section class="home-section" id="teaching">
   <h2 class="home-section__title">{{ post.teaching__title }}</h2>
 
-  {{ post.get_field( 'teaching__content' ) }}
+  <div class="home-section__content">
+    {{ post.get_field( 'teaching__content' ) }}
+  </div>
 </section>
 
 {# Work #}
