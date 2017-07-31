@@ -95,8 +95,11 @@
     // Web Font Loader
     wp_enqueue_script( 'chadkamer-webfontloader', 'https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js', [], true );
 
-    // Remove jQuery from all but WordPress admin
-    if ( !is_admin() ) wp_deregister_script( 'jquery' );
+    // Remove scripts and styles from front-end
+    if ( !is_admin() ) {
+      wp_deregister_script( 'wp-embed' );
+      wp_deregister_script( 'jquery' );
+    }
   }
   add_action( 'wp_enqueue_scripts', 'chadkamer_enqueue' );
 
@@ -113,4 +116,13 @@
     return $data;
   }
   add_filter( 'timber_context', 'add_to_context' );
+
+
+  /**
+  * Remove Actions
+  */
+  remove_action( 'wp_head', 'print_emoji_detection_script', 7 );
+  remove_action( 'admin_print_scripts', 'print_emoji_detection_script' );
+  remove_action( 'wp_print_styles', 'print_emoji_styles' );
+  remove_action( 'admin_print_styles', 'print_emoji_styles' );
 ?>
