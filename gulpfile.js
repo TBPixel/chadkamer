@@ -1,30 +1,29 @@
-( function() {
-  'use strict'; // Ensure Strict mode enabled
+'use strict';
 
-  const gulp = require( 'gulp' );
-  const sass = require( 'gulp-sass' );
-  const autoprefixer = require( 'gulp-autoprefixer' );
-  const livereload = require( 'gulp-livereload' );
+const gulp         = require( 'gulp' );
+const sass         = require( 'gulp-sass' );
+const autoprefixer = require( 'gulp-autoprefixer' );
+const livereload   = require( 'gulp-livereload' );
 
-  gulp.task( 'styles', function() {
 
-    return gulp.src( './_sass/style.sass' )
-      .pipe( sass().on( 'error', sass.logError ) )
-      .pipe( autoprefixer({
-        browsers: ['last 2 versions', 'IE 11', '> 1%'],
-        cascade: false
-      }))
-      .pipe( gulp.dest( './' ) )
-      .pipe( livereload() );
-  });
+gulp.task( 'styles', function() {
 
-  gulp.task( 'watch', function() {
+  return gulp.src( './_sass/style.sass' )
+    .pipe( sass().on( 'error', sass.logError ) )
+    .pipe( autoprefixer({
+      browsers: ['last 2 versions', 'IE 11', '> 1%'],
+      cascade: false
+    }))
+    .pipe( gulp.dest( './' ) )
+    .pipe( livereload() );
+});
 
-    livereload.listen();
+gulp.task( 'watch', function() {
 
-    gulp.watch( './_sass/**/**/*.{sass,scss}', ['styles'] );
-  });
+  livereload.listen();
 
-  // Run Gulp Task
-  gulp.task( 'default', [ 'styles', 'watch' ] );
-})();
+  gulp.watch( './_sass/**/**/*.{sass,scss}', ['styles'] );
+});
+
+
+gulp.task( 'default', [ 'styles', 'watch' ] );
