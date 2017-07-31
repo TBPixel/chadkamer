@@ -7,27 +7,28 @@
     .page { display: grid; }
 
     .page {
-      grid-template-columns: repeat( 5, 1fr );
-      grid-template-rows: 128px 48px 1fr;
+      grid-template-columns: auto 128px;
+      grid-template-rows: 48px auto 1fr;
       grid-template-areas:
-        "header header header header header"
-        "nav nav nav nav nav"
-        "main main main main footer";
+        'header footer'
+        'title footer'
+        'main footer';
     }
   }
 }
 
 
 .page {
-  @include e( 'title' ) {
+  @include e( 'header' ) {
     grid-column: header;
     grid-row: header;
   }
 
-  @include e( 'header' ) {
-    grid-column: nav;
-    grid-row: nav;
+  @include e( 'title' ) {
+    grid-column: title;
+    grid-row: title;
   }
+
 
   @include e( 'main' ) {
     grid-column: main;
