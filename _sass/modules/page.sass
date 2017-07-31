@@ -1,12 +1,27 @@
 /* Site page modifications
 
 .page
+  background-color: $color-white
+
+  -webkit-font-smoothing: antialiased
+  -moz-osx-font-smoothing: grayscale
+  -webkit-text-stroke: 0.45px rgba(0, 0, 0, 0.1)
 
   +e( 'title' )
-    margin-top: 16px
-    margin-bottom: 16px
+    max-width: 900px
+    margin: 64px 32px 128px
 
+    color: $color-black
     font-family: $font-family
     font-size: $font-large
     font-weight: $font-light
-    text-align: center
+    line-height: 68px
+
+    // Hero Title Links
+    & > a
+      color: $color-green
+      opacity: 1
+      transition: opacity 120ms
+
+      +mouse-action
+        opacity: .7
