@@ -18,12 +18,21 @@ gulp.task( 'styles', function() {
     .pipe( livereload() );
 });
 
+gulp.task( 'wysiwyg-styles', function() {
+
+  return gulp.src( './_sass/wysiwyg.sass' )
+    .pipe( sass().on( 'error', sass.logError ) )
+    .pipe( gulp.dest( './' ) )
+    .pipe( livereload() );
+});
+
 gulp.task( 'watch', function() {
 
   livereload.listen();
 
   gulp.watch( './_sass/**/**/*.{sass,scss}', ['styles'] );
+  gulp.watch( './_sass/wysiwyg.{sass,scss}', ['wysiwyg-styles'] )
 });
 
 
-gulp.task( 'default', [ 'styles', 'watch' ] );
+gulp.task( 'default', [ 'styles', 'wysiwyg-styles', 'watch' ] );
