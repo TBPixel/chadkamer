@@ -2,9 +2,24 @@
 
 
 {% block title %}
-<h1 class="page__title">{{ post.page__title }}</h1>
+<h1 class="page__title" id="about">{{ post.page__title }}</h1>
 {% endblock %}
 
 {% block content %}
+{# Teaching #}
+<section class="home-section" id="teaching">
+  <h2 class="home-section__title">{{ post.teaching__title }}</h2>
 
+  {{ post.get_field( 'teaching__content' ) }}
+</section>
+
+{# Work #}
+<section class="home-section" id="work">
+  <h2 class="home-section__title">{{ post.work__title }}</h2>
+</section>
+
+{# Contact #}
+<section class="home-section" id="contact">
+  <h2 class="home-section__title">{{ post.contact__title }}</h2>
+</section>
 {% endblock %}
