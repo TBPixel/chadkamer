@@ -1,6 +1,6 @@
 <?php
 /**
-  * Posts Page Template
+  * Template Name: Songs
   *
   * @package WordPress
   * @subpackage chadkamer
@@ -13,5 +13,5 @@
   $post = new TimberPost();
   $context['post'] = $post;
 
-  Timber::render( 'views/blog.twig', $context );
+  Timber::render( 'views/songs.twig', $context );
 ?>
