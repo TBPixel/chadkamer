@@ -8,9 +8,6 @@
       // Let WordPress manage the title tag
       add_theme_support( 'title-tag' );
 
-      // Enable Post Thumbnail Support
-      add_theme_support( 'post-thumbnails' );
-
       // Register Navigation Menu's
       register_nav_menus([
         'main'   => 'Main menu',

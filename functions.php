@@ -18,11 +18,16 @@
   */
   require_once 'inc/admin-init.php';
 
+  /**
+  * Admin Menu
+  */
+  require_once 'inc/admin-menu.php';
+
 
   /**
-  * Remove wysiwyg editor from template pages
+  * Init
   */
-  require_once 'inc/remove-wysiwyg.php';
+  require_once 'inc/init.php';
 
 
   /**

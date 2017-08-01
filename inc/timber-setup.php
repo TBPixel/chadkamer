@@ -1,6 +1,6 @@
 <?php
 
-  function add_to_timber_context( $data )
+  function chadkamer_add_to_timber_context( $data )
   {
 
     $data['menu_main']   = new TimberMenu( 'main' );
@@ -8,4 +8,4 @@
 
     return $data;
   }
-  add_filter( 'timber_context', 'add_to_timber_context' );
+  add_filter( 'timber_context', 'chadkamer_add_to_timber_context' );
