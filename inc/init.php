@@ -6,9 +6,21 @@
     register_post_type(
       'songs',
       [
-        'labels' => [
+        'labels'  => [
           'name'          => __( 'Songs' ),
           'singular_name' => __( 'Song' )
+        ],
+        'public'      => true,
+        'has_archive' => false
+      ]
+    );
+
+    register_post_type(
+      'albums',
+      [
+        'labels'  => [
+          'name'          => __( 'Albums' ),
+          'singular_name' => __( 'Album' )
         ],
         'public'      => true,
         'has_archive' => false
@@ -32,7 +44,7 @@
     $excluded_template_slugs = [
       'home.php',
       'blog.php',
-      'songs.php'
+      'music.php'
     ];
 
     if ( in_array( $current_page_template_slug, $excluded_template_slugs ) )
@@ -43,7 +55,8 @@
 
     /* post types */
     $excluded_post_types = [
-      'songs'
+      'songs',
+      'albums'
     ];
 
     foreach ( $excluded_post_types as $post_type )
