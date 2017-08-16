@@ -4,12 +4,21 @@
   display: flex
   flex-wrap: wrap
   align-items: flex-start
-  padding-bottom: 32px
+
+  background-size: cover
+  background-position-x: 0
+  background-repeat: no-repeat
+
+  +psuedo-background
+    left: 0
+    opacity: .9
 
   +e( 'title' )
-    flex: 0 1 196px
+    flex: 0 1 192px
+    min-width: 192px
 
     margin-top: 0
+    margin-bottom: 0
     padding: 16px
 
     background-color: $color-red
@@ -19,22 +28,24 @@
 
   +e( 'content' )
     flex: 0 1 100%
+    padding: 32px
 
-    padding-left: 16px
-    padding-right: 16px
+    color: $color-white
 
 
 @media only screen and ( min-width: 640px )
-  .home-section__content
-    padding-left: 32px
-    padding-right: 32px
-
+  .home-section__title
+    margin-right: 128px
 
 
 @media only screen and ( min-width: 960px )
   .home-section
     flex-wrap: nowrap
 
+    background-position-x: 320px
+
+    &::before
+      left: 320px
+
     +e( 'content' )
       max-width: 600px
-      margin-left: 10%
