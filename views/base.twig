@@ -5,6 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
+  {# Per-Page Styles #}
+  {% block inline_styles %}
+  <style></style>
+  {% endblock %}
+
   {{ wp_head }}
 </head>
 <body>
@@ -20,6 +25,7 @@
     </header>
     {% endblock %}
 
+
     {# Site Title #}
     {% block title %}
     <h1 class="page__title">
@@ -32,7 +38,6 @@
       {% block content %}{% endblock %}
     </main>
 
-    {% block footer %}
     <footer class="page__footer">
       {# Social Nav loop #}
       {% block social %}
@@ -43,7 +48,6 @@
       </nav>
       {% endblock %}
     </footer>
-    {% endblock %}
   </div>
 
   {{ wp_footer }}

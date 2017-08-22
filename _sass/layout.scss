@@ -1,42 +1,18 @@
 /* Page Layout */
 
-@media only screen and ( min-width: 640px ) {
+@media only screen and ( min-width: 640px )
+{
 
   // Grid support
-  @supports ( display: grid ) {
-    .page { display: grid; }
+  @supports ( display: grid )
+  {
+    // .page__header { display: grid; }
 
-    .page {
-      grid-template-columns: auto 128px;
-      grid-template-rows: 48px auto 1fr;
-      grid-template-areas:
-        'header footer'
-        'title footer'
-        'main footer';
-    }
-  }
-}
-
-
-.page {
-  @include e( 'header' ) {
-    grid-column: header;
-    grid-row: header;
-  }
-
-  @include e( 'title' ) {
-    grid-column: title;
-    grid-row: title;
-  }
-
-
-  @include e( 'main' ) {
-    grid-column: main;
-    grid-row: main;
-  }
-
-  @include e( 'footer' ) {
-    grid-column: footer;
-    grid-row: footer;
+    // .page__header {
+    //   grid-template-columns: auto 128px;
+    //   grid-template-rows: 48px auto;
+    //   grid-template-areas:
+    //     'nav social'
+    //     'title social';
   }
 }
