@@ -22,15 +22,14 @@
       {% block nav %}
       {% include 'views/partials/nav.twig' %}
       {% endblock %}
+
+      {# Site Title #}
+      {% block title %}
+      <h1 class="page__title">
+        {{ site.title }}
+      </h1>
+      {% endblock %}
     </header>
-    {% endblock %}
-
-
-    {# Site Title #}
-    {% block title %}
-    <h1 class="page__title">
-      {{ site.title }}
-    </h1>
     {% endblock %}
 
     {# Site main content #}
