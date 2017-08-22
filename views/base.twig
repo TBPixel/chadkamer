@@ -5,6 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
+  {# Set Styles #}
+  <style>
+  .hero::before
+  {
+    background-image: url( {{ TimberImage( post.get_field('hero__image') ).src }} );
+  }
+  </style>
+
   {# Per-Page Styles #}
   {% block inline_styles %}
   <style></style>
@@ -17,7 +25,7 @@
 
     {# Site Header #}
     {% block header %}
-    <header class="page__header">
+    <header class="hero">
       {# Site Navigation #}
       {% block nav %}
       {% include 'views/partials/nav.twig' %}
@@ -25,10 +33,12 @@
 
       {# Site Title #}
       {% block title %}
-      <h1 class="page__title">
+      <h1 class="hero__title">
         {{ site.title }}
       </h1>
       {% endblock %}
+
+      <div class="hero__background"></div>
     </header>
     {% endblock %}
 

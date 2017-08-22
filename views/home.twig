@@ -1,18 +1,8 @@
 {% extends 'views/base.twig' %}
 
-{% block inline_styles %}
-<style>
-  .page__header::before
-  {
-    background-image: url( {{ TimberImage( post.get_field('hero__image') ).src }} );
-  }
-</style>
-{% endblock %}
-
 
 {% block title %}
-<h1 class="page__title">{{ post.hero__intro }}</h1>
-<div class="hero-backdrop"></div>
+<h1 class="hero__title">{{ post.hero__intro }}</h1>
 {% endblock %}
 
 {% block content %}
