@@ -1,5 +1,7 @@
 <?php
 
+  $timber = new \Timber\Timber();
+
   function chadkamer_add_to_timber_context( $data )
   {
 

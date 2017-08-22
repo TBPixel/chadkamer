@@ -5,14 +5,6 @@
   flex-wrap: wrap
   align-items: flex-start
 
-  background-size: cover
-  background-position-x: 0
-  background-repeat: no-repeat
-
-  +psuedo-background
-    left: 0
-    opacity: .9
-
   +e( 'title' )
     flex: 0 1 192px
     min-width: 192px
@@ -30,7 +22,7 @@
     flex: 0 1 100%
     padding: 32px
 
-    color: $color-white
+    color: $color-black
 
 
 @media only screen and ( min-width: 640px )
@@ -41,8 +33,6 @@
 @media only screen and ( min-width: 960px )
   .home-section
     flex-wrap: nowrap
-
-    background-position-x: 320px
 
     &::before
       left: 320px

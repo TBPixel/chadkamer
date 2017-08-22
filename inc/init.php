@@ -14,18 +14,6 @@
         'has_archive' => false
       ]
     );
-
-    register_post_type(
-      'albums',
-      [
-        'labels'  => [
-          'name'          => __( 'Albums' ),
-          'singular_name' => __( 'Album' )
-        ],
-        'public'      => true,
-        'has_archive' => false
-      ]
-    );
   }
   add_action( 'init', 'chadkamer_cpt' );
 

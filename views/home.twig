@@ -13,29 +13,15 @@
   <div class="home-section__content">
     {{ post.get_field( 'teaching__content' ) }}
   </div>
-
-  <style>
-    #teaching { background-image: url( {{ TimberImage( post.get_field('teaching__image') ).src }} ); }
-      #teaching::before { background-color: {{ post.teaching__color }}; }
-  </style>
 </section>
 
 {# Work #}
 <section class="home-section" id="work">
   <h2 class="home-section__title">{{ post.work__title }}</h2>
-
-
-  <style>
-    #work::before { background-color: {{ post.work__color }}; }
-  </style>
 </section>
 
 {# Contact #}
 <section class="home-section" id="contact">
   <h2 class="home-section__title">{{ post.contact__title }}</h2>
-
-  <style>
-    #contact::before { background-color: {{ post.contact__color }}; }
-  </style>
 </section>
 {% endblock %}
