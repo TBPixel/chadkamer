@@ -96,3 +96,8 @@ typings/
 
 # dotenv environment variables file
 .env
+
+
+### Composer ###
+composer.phar
+/vendor/
