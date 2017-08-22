@@ -7,7 +7,6 @@
     $dir = realpath( __DIR__ . '/..' );
     $cpt_templates = [
       'songs'  => '/templates/single-songs.php',
-      'albums' => '/templates/single-albums.php'
     ];
 
     foreach ( $cpt_templates as $cpt => $template )

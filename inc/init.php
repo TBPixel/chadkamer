@@ -31,7 +31,6 @@
     /* file names of templates to remove the editor on */
     $excluded_template_slugs = [
       'home.php',
-      'blog.php',
       'music.php'
     ];
 
@@ -44,7 +43,6 @@
     /* post types */
     $excluded_post_types = [
       'songs',
-      'albums'
     ];
 
     foreach ( $excluded_post_types as $post_type )
