@@ -2,7 +2,7 @@
 
 .hero
   position: relative
-  height: 75vh
+  min-height: 75vh
   overflow: hidden
 
   // Hero Background
@@ -33,7 +33,10 @@
     position: relative
     z-index: $z-content
 
+    display: flex
+    align-items: center
     max-width: 900px
+    height: calc( 75vh - 256px )
     margin: 32px
 
     color: $color-white
@@ -56,7 +59,7 @@
 
 @media only screen and ( min-width: 640px )
   .hero__title
-    margin: 64px
+    margin: 64px 128px 64px 64px
     font-size: $font-large
 
 
@@ -64,4 +67,3 @@
 @media only screen and ( min-width: 960px )
   .hero__title
     margin: 0 auto
-    transform: translateY( 50% )

@@ -3,6 +3,7 @@
 .social
   display: flex
   flex-wrap: wrap
+  padding-top: 48px
 
   +e( 'item' )
     display: block
@@ -19,3 +20,9 @@
 @media only screen and ( min-width: 640px )
   .social
     flex-wrap: nowrap
+    flex-direction: column
+    align-items: flex-start
+
+    +e( 'item' )
+      flex: 0 0 auto
+      color: $color-white
