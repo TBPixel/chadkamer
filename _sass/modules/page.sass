@@ -1,35 +1,19 @@
 /* Site page modifications
 
 .page
+  background-color: $color-white
   -webkit-font-smoothing: antialiased
   -moz-osx-font-smoothing: grayscale
   -webkit-text-stroke: 0.45px rgba(0, 0, 0, 0.1)
 
+  +e( 'main' )
+    margin-left: 16px
+    margin-right: 16px
+
 
 @media only screen and ( min-width: 640px )
-  .page__footer
-    position: fixed
-    top: 0
-    right: 0
-    z-index: $z-content
+  .page
 
-    width: 128px
-    height: 100vh
-
-    &::before
-      content: ''
-
-      position: absolute
-      top: 0
-      right: 0
-      bottom: 0
-      left: 0
-      z-index: -1
-
-      transition: opacity $transition-dur
-      opacity: 0
-      background-color: $color-green
-
-    +m( 'background' )
-      &::before
-        opacity: 0.8
+    +e( 'main' )
+      margin-left: 32px
+      margin-right: 32px

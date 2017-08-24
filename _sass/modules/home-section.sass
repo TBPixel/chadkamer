@@ -1,0 +1,64 @@
+/* Home Sections
+
+.home-section
+  margin-bottom: 128px
+
+  +e( 'icon' )
+    display: block
+
+    color: $color-green
+    text-align: center
+
+
+  +e( 'title' )
+    position: relative
+
+    margin-top: 8px
+    margin-bottom: 32px
+    padding-bottom: 16px
+
+    font-weight: $font-light
+    letter-spacing: 4px
+    text-align: center
+    text-transform: uppercase
+
+    &::after
+      content: ''
+      position: absolute
+      right: 0
+      bottom: 0
+      left: 50%
+
+      width: 10%
+      height: 4px
+
+      background-color: $color-black
+      transform: translateX( -50% )
+
+
+  +e( 'content' )
+    max-width: 900px
+    margin-left: auto
+    margin-right: auto
+
+    +m( 'contact' )
+      margin-bottom: 64px
+
+
+  +e( 'button' )
+    display: block
+    min-width: 128px
+    width: 20%
+    margin-left: auto
+    margin-right: auto
+    padding: 32px 16px
+
+    background-color: $color-green
+
+    color: $color-white
+    font-family: $font-family
+    font-weight: $font-bold
+    letter-spacing: 2px
+    text-align: center
+    text-transform: uppercase
+

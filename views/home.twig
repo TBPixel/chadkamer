@@ -6,5 +6,28 @@
 {% endblock %}
 
 {% block content %}
+{# Work #}
+<section class="home-section">
+  <span class="home-section__icon fa fa-suitcase fa-2x" aria-hidden="true"></span>
+  <h2 class="home-section__title">{{ post.work__title }}</h2>
+  <p class="home-section__content">{{ post.work__intro }}</p>
+
+</section>
+
+{# Teaching #}
+<section class="home-section">
+  <span class="home-section__icon fa fa-graduation-cap fa-2x" aria-hidden="true"></span>
+  <h2 class="home-section__title">{{ post.teaching__title }}</h2>
+  <p class="home-section__content">{{ post.teaching__content }}</p>
+</section>
+
+{# Contact #}
+<section class="home-section">
+  <span class="home-section__icon fa fa-envelope-open fa-2x" aria-hidden="true"></span>
+  <h2 class="home-section__title">{{ post.contact__title }}</h2>
+  <p class="home-section__content home-section__content--contact">{{ post.contact__intro }}</p>
+
+  <a class="home-section__button" href="mailto:{{ post.contact__email }}">{{ post.contact__button_text }}</a>
+</section>
 
 {% endblock %}
