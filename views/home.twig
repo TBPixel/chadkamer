@@ -6,19 +6,32 @@
 {% endblock %}
 
 {% block content %}
-{# Work #}
-<section class="home-section">
-  <span class="home-section__icon fa fa-suitcase fa-2x" aria-hidden="true"></span>
-  <h2 class="home-section__title">{{ post.work__title }}</h2>
-  <p class="home-section__content">{{ post.work__intro }}</p>
-
-</section>
-
 {# Teaching #}
 <section class="home-section">
   <span class="home-section__icon fa fa-graduation-cap fa-2x" aria-hidden="true"></span>
   <h2 class="home-section__title">{{ post.teaching__title }}</h2>
   <p class="home-section__content">{{ post.teaching__content }}</p>
+</section>
+
+{# Work #}
+<section class="home-section js-songs">
+  <span class="home-section__icon fa fa-suitcase fa-2x" aria-hidden="true"></span>
+  <h2 class="home-section__title">{{ post.work__title }}</h2>
+  <p class="home-section__content">{{ post.work__intro }}</p>
+
+  {% for song in post.get_field( 'work__songs' ) %}
+  <article class="song">
+    <img class="song__image" src="">
+
+    <audio class="song__audio js-audio">
+    {% for source in song.audio_files %}
+      <source src="{{ source.file.url }}" type="{{ source.file.mime_type }}">
+    {% endfor %}
+    </audio>
+
+    <button class="song__button js-toggle-state fa fa-play fa-2x"></button>
+  </article>
+  {% endfor %}
 </section>
 
 {# Contact #}

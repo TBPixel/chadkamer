@@ -43,12 +43,6 @@
 
 
   /**
-  * Post Templates
-  */
-  require_once 'inc/templates.php';
-
-
-  /**
   * Add context data to all page templates in Timber
   */
   require_once 'inc/timber-setup.php';
