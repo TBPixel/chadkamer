@@ -21,7 +21,7 @@
 
   {% for song in post.get_field( 'work__songs' ) %}
   <article class="song">
-    <img class="song__image" src="">
+    <img class="song__image" src="{{ song.cover_art }}">
 
     <audio class="song__audio js-audio">
     {% for source in song.audio_files %}
@@ -29,7 +29,12 @@
     {% endfor %}
     </audio>
 
-    <button class="song__button js-toggle-state fa fa-play fa-2x"></button>
+    <div class="song__controls js-controls">
+      <button class="song__button js-toggle-state fa fa-play fa-2x"></button>
+      <div class="song__progress js-progress">
+        <div class="song__bar js-progress__bar"></div>
+      </div>
+    </div>
   </article>
   {% endfor %}
 </section>
