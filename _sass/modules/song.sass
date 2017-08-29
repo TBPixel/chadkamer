@@ -3,9 +3,36 @@
 .song
   position: relative
 
-  +e( 'audio' )
+
+  // Progress Bar
+  +e( 'progress' )
+    position: relative
+    height: 4px
+    background-color: $color-black
+
+    cursor: pointer
+
+  +e( 'bar' )
+    width: 100%
+    height: 100%
+
+    background-color: $color-red
+    transform: scaleX( 0 )
+    transform-origin: left
+    transition: transform $transition-dur
+
+  +e( 'scrubber' )
     position: absolute
-    top: 0
-    right: 0
-    bottom: 0
+    top: 50%
     left: 0
+
+    padding: 0
+
+    background-color: transparent
+    border: none
+    pointer-events: none
+    transform: translateY( -50% )
+
+    color: $color-red
+    font-size: 16px
+    transition: transform $transition-dur
