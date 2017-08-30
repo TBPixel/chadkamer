@@ -57,12 +57,14 @@
 
     AudioControls.prototype.moveScrubber = function( pos )
     {
+      pos = Math.min( Math.max( pos, 0 ), this.progress.offsetWidth );
       this.scrubber.style.transform = 'translate( '+ Math.round( pos ) +'px, -50% )';
     };
 
 
     AudioControls.prototype.moveTracker = function( pos )
     {
+      pos = Math.min( Math.max( pos, 0 ), this.progress.offsetWidth );
       var tracker_width = this.tracker.offsetWidth;
       var progress_fraction = Math.round(( 100 * pos ) / tracker_width ) / 100;
 
