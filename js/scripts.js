@@ -7,7 +7,7 @@
   */
 
     // Event Delegation
-    function get_event_target( e )
+    function getEventTarget( e )
     {
       var e = e || window.event;        // event
       var t = e.target || e.srcElement; // target
@@ -20,119 +20,124 @@
     }
 
 
+    // Pass multiple css classes for toggling
+    Element.prototype.toggleClasses = function()
+    {
+      for ( var i = 0; i < arguments.length; i++ )
+        this.classList.toggle( arguments[i] );
+    }
+
+
+  /**
+   *
+  */
+    function AudioControls( container )
+    {
+      // Nodes
+      this.container = container;
+      this.playpause = container.querySelector( '.js-playpause' );
+      this.progress  = container.querySelector( '.js-progress' );
+      this.tracker   = container.querySelector( '.js-tracker' );
+      this.scrubber  = container.querySelector( '.js-scrubber' );
+    }
+
+
+    AudioControls.prototype.calcScrubberOffset = function( e )
+    {
+      return this.progress.getBoundingClientRect().left + (this.scrubber.offsetWidth / 2);
+    };
+
+
+    AudioControls.prototype.reset = function()
+    {
+      this.playpause.classList.remove( 'fa-pause' );
+      this.playpause.classList.add( 'fa-play' );
+    };
+
+
+    AudioControls.prototype.moveScrubber = function( pos )
+    {
+      this.scrubber.style.transform = 'translate( '+ Math.round( pos ) +'px, -50% )';
+    };
+
+
+    AudioControls.prototype.moveTracker = function( pos )
+    {
+      var tracker_width = this.tracker.offsetWidth;
+      var progress_fraction = Math.round(( 100 * pos ) / tracker_width ) / 100;
+
+      this.tracker.style.transform = 'scaleX( '+ progress_fraction +' )';
+    };
+
+
   /**
    * Audio Player
    * Class for handling multiple audio players
   */
     function AudioPlayer( container )
     {
+      // Nodes
       this.container = container;
       this.audio     = container.querySelector( '.js-audio' );
-      this.controls  = {
-        parent:       container.querySelector( '.js-controls' ),
-        toggle_state: container.querySelector( '.js-toggle-state' ),
-        progress:     container.querySelector( '.js-progress' ),
-        progress_bar: container.querySelector( '.js-progress-bar' ),
-        scrubber:     container.querySelector( '.js-scrubber' )
+      this.controls = new AudioControls( container.querySelector( '.js-controls' ) );
+
+      // States
+      this.states = {
+        isScrubbing: false,
+        prevState: 'paused'
       };
-      this.mouse_state = 'tap'; // tap, drag
 
+      // Events
+      this.audio.addEventListener( 'timeupdate', this.update.bind( this ) );
+
+      // Settings
       this.audio.volume = 0.1; // Test code
-
-      this.audio.addEventListener( 'timeupdate', this.update.bind( this ), false );
-
-      this.controls.toggle_state.addEventListener( 'click', this.toggle_state.bind( this ) );
-      this.controls.progress.addEventListener( 'mousedown', this.move_scrubber.bind( this ) );
-      document.addEventListener( 'mousemove', this.drag_scrubber.bind( this ) );
-      document.addEventListener( 'mouseup', this.release_scrubber.bind( this ) );
     }
 
 
-    AudioPlayer.prototype.move_scrubber = function( event, pos )
+    AudioPlayer.prototype.toggleScrubbingState = function()
     {
-      var pos    = pos || null;
-      var offset = this.controls.progress.getBoundingClientRect().left + (this.controls.scrubber.offsetWidth / 2);
-
-      if ( event.type === 'mousedown' )
-      {
-        this.mouse_state = 'drag';
-      }
-
-      // Scrubbing Audio
-      if ( event.type !== 'timeupdate' )
-      {
-        if ( !this.audio.paused )
-          this.toggle_state();
-
-        var pos = event.clientX - offset;
-      }
-
-      // Update Progress Bar
-      var bar_width = this.controls.progress_bar.offsetWidth;
-      var progress_fraction = Math.round(( 100 * pos ) / bar_width ) / 100;
-      this.controls.progress_bar.style.transform = 'scaleX( '+ progress_fraction +' )';
-      // Update Scrubber
-      this.controls.scrubber.style.transform = 'translate( '+ Math.round( pos ) +'px, -50% )';
-
+      if ( this.states.isScrubbing === false )
+        this.states.isScrubbing = true;
+      else
+        this.states.isScrubbing = false;
     };
 
 
-    AudioPlayer.prototype.drag_scrubber = function( event )
+    AudioPlayer.prototype.togglePrevState = function()
     {
-      if ( this.mouse_state === 'drag' ) this.move_scrubber( event );
-    }
+      if ( this.states.prevState === 'paused' )
+        this.states.prevState = 'playing';
+      else
+        this.states.prevState = 'paused';
+    };
 
 
-    AudioPlayer.prototype.release_scrubber = function( event )
-    {
-      if ( this.mouse_state !== 'drag' )
-        return;
-
-      this.mouse_state = 'tap';
-
-      // Play audio from new positon
-      var offset  = this.controls.progress.getBoundingClientRect().left + (this.controls.scrubber.offsetWidth / 2);
-      var mouse_x = event.clientX - offset;
-      var width   = this.controls.progress.offsetWidth;
-
-      var fraction = mouse_x / width;
-
-      var new_time = this.audio.duration * fraction;
-
-      this.audio.currentTime = new_time;
-
-      if ( this.audio.paused )
-        this.toggle_state();
-    }
-
-
-    AudioPlayer.prototype.reset_player = function()
+    AudioPlayer.prototype.reset = function()
     {
       this.audio.currentTime = 0;
-
-      this.controls.toggle_state.classList.remove( 'fa-pause' );
-      this.controls.toggle_state.classList.add( 'fa-play' );
+      this.controls.reset();
     };
 
 
-    AudioPlayer.prototype.update = function( event )
+    AudioPlayer.prototype.update = function( e )
     {
       var progress_fraction = Math.round(( 100 * this.audio.currentTime ) / this.audio.duration) / 100;
-      var bar_width = this.controls.progress_bar.offsetWidth;
-      this.move_scrubber( event, (progress_fraction * bar_width) );
+      var tracker_width = this.controls.tracker.offsetWidth;
+
+      var pos = ( progress_fraction * tracker_width );
+      this.controls.moveScrubber( pos );
+      this.controls.moveTracker( pos );
 
       if ( this.audio.ended )
-        this.reset_player();
+        this.reset();
     };
 
 
-    AudioPlayer.prototype.toggle_state = function()
+    AudioPlayer.prototype.playpause = function()
     {
-      // Toggle Button State
-      this.controls.toggle_state.classList.toggle( 'fa-play' );
-      this.controls.toggle_state.classList.toggle( 'fa-pause' );
+      this.controls.playpause.toggleClasses( 'fa-play', 'fa-pause' );
 
-      // Toggle audio state
       if ( this.audio.paused )
         this.audio.play();
       else
@@ -147,5 +152,90 @@
   Array.prototype.forEach.call( songs, function( container )
   {
     players.push( new AudioPlayer( container ) );
+  });
+
+
+  /**
+   * Event Bindings
+  */
+  document.addEventListener( 'click', function( e )
+  {
+    var target = getEventTarget( e );
+
+    players.forEach( function( audioplayer )
+    {
+
+      // Play/Pause Audio Player
+      if ( target === audioplayer.controls.playpause )
+      {
+        audioplayer.togglePrevState();
+        audioplayer.playpause();
+      }
+    });
+  });
+
+
+  document.addEventListener( 'mousedown', function( e )
+  {
+    var target = getEventTarget( e );
+
+    players.forEach( function( audioplayer )
+    {
+      // Audio Scrubbing
+      if ( (target === audioplayer.controls.progress) || (target === audioplayer.controls.tracker) )
+      {
+        // Update States
+        audioplayer.toggleScrubbingState();
+
+        // Pause Audio
+        if ( audioplayer.states.isScrubbing && !audioplayer.audio.paused )
+          audioplayer.playpause();
+
+        // Update Scrubber + Progress tracker
+        var pos = e.clientX - audioplayer.controls.calcScrubberOffset();
+        audioplayer.controls.moveScrubber( pos );
+        audioplayer.controls.moveTracker( pos );
+      }
+    });
+  });
+
+
+  document.addEventListener( 'mousemove', function( e )
+  {
+    players.forEach( function( audioplayer )
+    {
+
+      // Dragging Scrubber
+      if ( audioplayer.states.isScrubbing )
+      {
+        // Update Scrubber + Progress tracker
+        var pos = e.clientX - audioplayer.controls.calcScrubberOffset();
+        audioplayer.controls.moveScrubber( pos );
+        audioplayer.controls.moveTracker( pos );
+      }
+    });
+  });
+
+
+  document.addEventListener( 'mouseup', function( e )
+  {
+    players.forEach( function( audioplayer )
+    {
+      // Do nothing unless scrubbing
+      if ( !audioplayer.states.isScrubbing )
+        return;
+
+      audioplayer.toggleScrubbingState();
+
+      // Set new time
+      var pos = e.clientX - audioplayer.controls.calcScrubberOffset();
+      var fraction = pos / audioplayer.controls.progress.offsetWidth;
+      var new_time = audioplayer.audio.duration * fraction;
+      audioplayer.audio.currentTime = new_time;
+
+      // Resume Audio if relevant
+      if ( audioplayer.states.prevState === 'playing' )
+        audioplayer.playpause();
+    });
   });
 }());
