@@ -2,37 +2,74 @@
 
 .song
   position: relative
+  max-width: 900px
+  margin-left: auto
+  margin-right: auto
+
+
+  +e( 'controls' )
+    display: flex
+
+
+  // PlayPause
+  +e( 'button' )
+    flex: 0 0 32px
+    margin-right: 8px
+    padding-left: 0
+    padding-right: 0
+
+    background-color: transparent
+    border: none
+    cursor: pointer
+    outline: none
 
 
   // Progress Bar
   +e( 'progress' )
     position: relative
-    height: 4px
-    background-color: $color-black
+    flex: 1 1 100%
 
-    cursor: pointer
 
   +e( 'tracker' )
-    width: 100%
-    height: 100%
-
-    background-color: $color-red
-    transform: scaleX( 0 )
-    transform-origin: left
-    transition: transform $transition-dur
-
-  +e( 'scrubber' )
     position: absolute
     top: 50%
-    left: 0
+    z-index: 1
 
-    padding: 0
+    width: 100%
+    height: 4px
 
-    background-color: transparent
-    border: none
+    background-color: $color-red
     pointer-events: none
-    transform: translateY( -50% )
+    transform: translateY( -50% ) scaleX( 0 )
+    transform-origin: left
 
-    color: $color-red
-    font-size: 16px
-    transition: transform $transition-dur
+
+  +e( 'slider' )
+    position: absolute
+    top: 50%
+
+    width: 100%
+    height: 4px
+    margin: 0
+
+    appearance: none
+    background: $color-black
+    border-radius: 5px
+    cursor: pointer
+    transform: translateY( -50% )
+    outline: none
+
+    &::-webkit-slider-thumb
+      appearance: none
+      width: 16px
+      height: 16px
+      border-radius: 50%
+      background: $color-red
+      cursor: pointer
+
+    &::-moz-range-thumb
+      width: 16px
+      height: 16px
+      border-radius: 50%
+      background: $color-red
+      cursor: pointer

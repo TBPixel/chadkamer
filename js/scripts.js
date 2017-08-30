@@ -38,14 +38,11 @@
       this.playpause = container.querySelector( '.js-playpause' );
       this.progress  = container.querySelector( '.js-progress' );
       this.tracker   = container.querySelector( '.js-tracker' );
-      this.scrubber  = container.querySelector( '.js-scrubber' );
+      this.slider    = container.querySelector( '.js-slider' );
     }
 
 
-    AudioControls.prototype.calcScrubberOffset = function( e )
-    {
-      return this.progress.getBoundingClientRect().left + (this.scrubber.offsetWidth / 2);
-    };
+    AudioControls.prototype.calcScrubberOffset = function( e ) { return this.progress.getBoundingClientRect().left + 8; };
 
 
     AudioControls.prototype.reset = function()
@@ -55,20 +52,19 @@
     };
 
 
-    AudioControls.prototype.moveScrubber = function( pos )
+    AudioControls.prototype.moveSlider = function( time ) { this.slider.value = time; };
+
+
+    AudioControls.prototype.moveTracker = function( time, duration )
     {
-      pos = Math.min( Math.max( pos, 0 ), this.progress.offsetWidth );
-      this.scrubber.style.transform = 'translate( '+ Math.round( pos ) +'px, -50% )';
-    };
+      time = time / duration;
 
+      var progress_width = this.progress.offsetWidth;
+      var pos = Math.min( Math.max( ( time * progress_width ), 0 ), progress_width );
 
-    AudioControls.prototype.moveTracker = function( pos )
-    {
-      pos = Math.min( Math.max( pos, 0 ), this.progress.offsetWidth );
-      var tracker_width = this.tracker.offsetWidth;
-      var progress_fraction = Math.round(( 100 * pos ) / tracker_width ) / 100;
-
-      this.tracker.style.transform = 'scaleX( '+ progress_fraction +' )';
+      var transform = 'translateY( -50% ) scaleX( '+ (pos / progress_width) +' )';
+      this.tracker.style.transform       = transform;
+      this.tracker.style.webkitTransform = transform;
     };
 
 
@@ -91,6 +87,10 @@
 
       // Events
       this.audio.addEventListener( 'timeupdate', this.update.bind( this ) );
+      this.audio.addEventListener( 'durationchange', function()
+      {
+        this.controls.slider.setAttribute( 'max', this.audio.duration );
+      }.bind( this ) );
 
       // Settings
       this.audio.volume = 0.1; // Test code
@@ -128,12 +128,12 @@
 
     AudioPlayer.prototype.update = function( e )
     {
-      var progress_fraction = Math.round(( 100 * this.audio.currentTime ) / this.audio.duration) / 100;
-      var tracker_width = this.controls.tracker.offsetWidth;
 
-      var pos = ( progress_fraction * tracker_width );
-      this.controls.moveScrubber( pos );
-      this.controls.moveTracker( pos );
+      if ( !this.states.isScrubbing )
+      {
+        this.controls.moveSlider( this.audio.currentTime );
+        this.controls.moveTracker( this.audio.currentTime, this.audio.duration );
+      }
 
       if ( this.audio.ended )
         this.reset();
@@ -187,20 +187,19 @@
 
     players.forEach( function( audioplayer )
     {
-      // Audio Scrubbing
-      if ( (target === audioplayer.controls.progress) || (target === audioplayer.controls.tracker) )
+      var slider = audioplayer.controls.slider;
+
+      if ( target === slider )
       {
-        // Update States
+        // Toggle Scrubbing On
         audioplayer.toggleScrubbingState();
 
-        // Pause Audio
-        if ( audioplayer.states.isScrubbing && !audioplayer.audio.paused )
+        // Pause Player
+        if ( !audioplayer.audio.paused )
           audioplayer.playpause();
 
-        // Update Scrubber + Progress tracker
-        var pos = e.clientX - audioplayer.controls.calcScrubberOffset();
-        audioplayer.controls.moveScrubber( pos );
-        audioplayer.controls.moveTracker( pos );
+        // Update Progress
+        audioplayer.controls.moveTracker( slider.value, audioplayer.audio.duration );
       }
     });
   });
@@ -214,10 +213,9 @@
       // Dragging Scrubber
       if ( audioplayer.states.isScrubbing )
       {
-        // Update Scrubber + Progress tracker
-        var pos = e.clientX - audioplayer.controls.calcScrubberOffset();
-        audioplayer.controls.moveScrubber( pos );
-        audioplayer.controls.moveTracker( pos );
+        // Update progress tracker
+        var slider = audioplayer.controls.slider;
+        audioplayer.controls.moveTracker( slider.value, audioplayer.audio.duration );
       }
     });
   });
@@ -234,10 +232,7 @@
       audioplayer.toggleScrubbingState();
 
       // Set new time
-      var pos = e.clientX - audioplayer.controls.calcScrubberOffset();
-      var fraction = pos / audioplayer.controls.progress.offsetWidth;
-      var new_time = audioplayer.audio.duration * fraction;
-      audioplayer.audio.currentTime = new_time;
+      audioplayer.audio.currentTime =  audioplayer.controls.slider.value;
 
       // Resume Audio if relevant
       if ( audioplayer.states.prevState === 'playing' )
