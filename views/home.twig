@@ -30,11 +30,20 @@
     </audio>
 
     <div class="song__controls js-controls">
-      <button class="song__button js-playpause fa fa-play fa-2x"></button>
-
+      {# Progress Bar #}
       <div class="song__progress js-progress">
         <div class="song__tracker js-tracker"></div>
-        <input type="range" min="0" max="100" value="0" class="song__slider js-slider">
+        <input class="song__slider js-slider" type="range" min="0" max="100" value="0">
+      </div>
+
+      {# Play/Pause Button #}
+      <button class="song__button js-playpause fa fa-play fa-2x"></button>
+
+      {# Volume Control #}
+      <div class="song__volume js-volume">
+        <span class="song__volume-icon fa fa-volume-down fa-2x"></span>
+        <div class="song__volume-tracker js-volume-tracker"></div>
+        <input class="song__volume-slider js-volume-slider" type="range" min="0" max="1" step="0.01" value="0.10">
       </div>
     </div>
   </article>

@@ -20,25 +20,36 @@
     }
 
 
+    // Apply transformation to element
+    Element.prototype.applyTransform = function( transform )
+    {
+      this.style.transform       = transform;
+      this.style.webkitTransform = transform;
+    };
+
+
     // Pass multiple css classes for toggling
     Element.prototype.toggleClasses = function()
     {
       for ( var i = 0; i < arguments.length; i++ )
         this.classList.toggle( arguments[i] );
-    }
+    };
 
 
   /**
-   *
+   * Audio Controls Component
   */
     function AudioControls( container )
     {
       // Nodes
-      this.container = container;
-      this.playpause = container.querySelector( '.js-playpause' );
-      this.progress  = container.querySelector( '.js-progress' );
-      this.tracker   = container.querySelector( '.js-tracker' );
-      this.slider    = container.querySelector( '.js-slider' );
+      this.container      = container;
+      this.playpause      = container.querySelector( '.js-playpause' );
+      this.progress       = container.querySelector( '.js-progress' );
+      this.tracker        = this.progress.querySelector( '.js-tracker' );
+      this.slider         = this.progress.querySelector( '.js-slider' );
+      this.volume         = container.querySelector( '.js-volume' );
+      this.volume_tracker = this.volume.querySelector( '.js-volume-tracker' );
+      this.volume_slider  = this.volume.querySelector( '.js-volume-slider' );
     }
 
 
@@ -47,25 +58,20 @@
 
     AudioControls.prototype.reset = function()
     {
-      this.playpause.classList.remove( 'fa-pause' );
-      this.playpause.classList.add( 'fa-play' );
+      var playpause = this.playpause.classList;
+
+      playpause.remove( 'fa-pause' );
+      playpause.add( 'fa-play' );
     };
 
 
     AudioControls.prototype.moveSlider = function( time ) { this.slider.value = time; };
 
 
-    AudioControls.prototype.moveTracker = function( time, duration )
-    {
-      time = time / duration;
+    AudioControls.prototype.moveTracker = function( percent ) { this.tracker.applyTransform( 'translateY( -50% ) scaleX( '+ percent +' )' ); };
 
-      var progress_width = this.progress.offsetWidth;
-      var pos = Math.min( Math.max( ( time * progress_width ), 0 ), progress_width );
 
-      var transform = 'translateY( -50% ) scaleX( '+ (pos / progress_width) +' )';
-      this.tracker.style.transform       = transform;
-      this.tracker.style.webkitTransform = transform;
-    };
+    AudioControls.prototype.moveVolumeTracker = function( percent ) { this.volume_tracker.applyTransform( 'translateY( -50% ) scaleX( '+ percent +' )' ); };
 
 
   /**
@@ -92,8 +98,13 @@
         this.controls.slider.setAttribute( 'max', this.audio.duration );
       }.bind( this ) );
 
+      this.controls.volume_slider.oninput = function()
+      {
+        this.setVolume( this.controls.volume_slider.value );
+      }.bind( this );
+
       // Settings
-      this.audio.volume = 0.1; // Test code
+      this.setVolume( this.controls.volume_slider.value );
     }
 
 
@@ -115,6 +126,21 @@
     };
 
 
+    AudioPlayer.prototype.percentComplete = function( currentTime )
+    {
+      currentTime = currentTime || this.audio.currentTime;
+
+      return currentTime / this.audio.duration;
+    };
+
+
+    AudioPlayer.prototype.setVolume = function( percent )
+    {
+      this.audio.volume = percent;
+      this.controls.moveVolumeTracker( percent );
+    };
+
+
     AudioPlayer.prototype.reset = function()
     {
       this.audio.currentTime = 0;
@@ -132,7 +158,7 @@
       if ( !this.states.isScrubbing )
       {
         this.controls.moveSlider( this.audio.currentTime );
-        this.controls.moveTracker( this.audio.currentTime, this.audio.duration );
+        this.controls.moveTracker( this.percentComplete() );
       }
 
       if ( this.audio.ended )
@@ -199,7 +225,7 @@
           audioplayer.playpause();
 
         // Update Progress
-        audioplayer.controls.moveTracker( slider.value, audioplayer.audio.duration );
+        audioplayer.controls.moveTracker( audioplayer.percentComplete( slider.value ) );
       }
     });
   });
@@ -215,7 +241,7 @@
       {
         // Update progress tracker
         var slider = audioplayer.controls.slider;
-        audioplayer.controls.moveTracker( slider.value, audioplayer.audio.duration );
+        audioplayer.controls.moveTracker( audioplayer.percentComplete( slider.value ) );
       }
     });
   });
