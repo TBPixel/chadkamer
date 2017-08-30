@@ -10,13 +10,14 @@
 
 
   +e( 'cover-art' )
-    flex: 0 0 128px
+    flex: 0 1 128px
     height: 128px
+    background-size: contain
 
 
   +e( 'content' )
     position: relative
-    flex: 1 1 100%
+    flex: 1 0 100%
     margin-top: 16px
 
 
@@ -289,5 +290,9 @@
   .song
     flex-wrap: nowrap
 
+    +e( 'cover-art' )
+      height: auto
+
     +e( 'content' )
+      flex: 1 0 auto
       margin-top: 0

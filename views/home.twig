@@ -21,7 +21,7 @@
 
   {% for song in post.get_field( 'work__songs' ) %}
   <article class="song">
-    <img class="song__cover-art" src="{{ TimberImage(song.cover_art).src }}" alt="{{ TimberImage(song.cover_art).alt }}">
+    <div class="song__cover-art" style="background-image: url( {{ TimberImage(song.cover_art).src }} );"></div>
 
     {# Content #}
     <div class="song__content">
