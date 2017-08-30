@@ -118,6 +118,10 @@
     AudioPlayer.prototype.reset = function()
     {
       this.audio.currentTime = 0;
+      this.states = {
+        isScrubbing: false,
+        prevState: 'paused'
+      };
       this.controls.reset();
     };
 
