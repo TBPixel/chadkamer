@@ -98,11 +98,6 @@
         this.controls.slider.setAttribute( 'max', this.audio.duration );
       }.bind( this ) );
 
-      this.controls.volume_slider.oninput = function()
-      {
-        this.setVolume( this.controls.volume_slider.value );
-      }.bind( this );
-
       // Settings
       this.setVolume( this.controls.volume_slider.value );
     }
@@ -205,6 +200,26 @@
       }
     });
   });
+
+
+  function adjustVolume( e )
+  {
+    var target = getEventTarget( e );
+
+    players.forEach( function( audioplayer )
+    {
+      var volume_slider = audioplayer.controls.volume_slider;
+
+      if ( target === volume_slider )
+      {
+        audioplayer.setVolume( volume_slider.value );
+      }
+    });
+  }
+
+
+  document.addEventListener( 'input', adjustVolume );
+  document.addEventListener( 'change', adjustVolume );
 
 
   document.addEventListener( 'mousedown', function( e )

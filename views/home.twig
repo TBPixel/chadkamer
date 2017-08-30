@@ -21,31 +21,46 @@
 
   {% for song in post.get_field( 'work__songs' ) %}
   <article class="song">
-    <img class="song__image" src="{{ song.cover_art }}">
+    <img class="song__cover-art" src="{{ TimberImage(song.cover_art).src }}" alt="{{ TimberImage(song.cover_art).alt }}">
 
-    <audio class="song__audio js-audio">
-    {% for source in song.audio_files %}
-      <source src="{{ source.file.url }}" type="{{ source.file.mime_type }}">
-    {% endfor %}
-    </audio>
+    {# Content #}
+    <div class="song__content">
 
-    <div class="song__controls js-controls">
-      {# Progress Bar #}
-      <div class="song__progress js-progress">
-        <div class="song__tracker js-tracker"></div>
-        <input class="song__slider js-slider" type="range" min="0" max="100" value="0">
+      <header class="song__header">
+        <h3 class="song__header-title">{{ song.title }}</h3>
+        <p class="song__meta">
+          <em class="song__header-album">{{ song.album }}</em>,
+          <time class="song__header-date" datetime="{{ song.release_date }}">{{ song.release_date }}</time>
+        </p>
+      </header>
+
+      <audio class="song__audio js-audio">
+      {% for source in song.audio_files %}
+        <source src="{{ source.file.url }}" type="{{ source.file.mime_type }}">
+      {% endfor %}
+      </audio>
+
+      {# Controls #}
+      <div class="song__controls js-controls">
+        {# Progress Bar #}
+        <div class="song__progress js-progress">
+          <div class="song__tracker js-tracker"></div>
+          <input class="song__slider js-slider" type="range" min="0" max="100" value="0">
+        </div>
+
+        {# Play/Pause Button #}
+        <button class="song__button js-playpause fa fa-play fa-2x"></button>
+
+        {# Volume Control #}
+        <div class="song__volume js-volume">
+          <span class="song__volume-icon fa fa-volume-down fa-2x"></span>
+          <div class="song__volume-tracker js-volume-tracker"></div>
+          <input class="song__volume-slider js-volume-slider" type="range" min="0" max="1" step="0.01" value="0.10">
+        </div>
       </div>
-
-      {# Play/Pause Button #}
-      <button class="song__button js-playpause fa fa-play fa-2x"></button>
-
-      {# Volume Control #}
-      <div class="song__volume js-volume">
-        <span class="song__volume-icon fa fa-volume-down fa-2x"></span>
-        <div class="song__volume-tracker js-volume-tracker"></div>
-        <input class="song__volume-slider js-volume-slider" type="range" min="0" max="1" step="0.01" value="0.10">
-      </div>
+      {# Controls END #}
     </div>
+    {# Content END #}
   </article>
   {% endfor %}
 </section>

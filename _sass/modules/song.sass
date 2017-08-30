@@ -2,27 +2,61 @@
 
 .song
   position: relative
+  display: flex
+  flex-wrap: wrap
+  justify-content: center
   max-width: 900px
-  margin-left: auto
-  margin-right: auto
+  margin: 32px auto
 
 
+  +e( 'cover-art' )
+    flex: 0 0 128px
+    height: 128px
+
+
+  +e( 'content' )
+    position: relative
+    flex: 1 1 100%
+    margin-top: 16px
+
+
+  // Header
+  +e( 'header' )
+    margin-left: 16px
+
+
+  +e( 'header-title' )
+    margin-top: 0
+    margin-bottom: 0
+    line-height: 1
+
+
+  +e( 'header-album' )
+    line-height: 1.9
+
+
+  +e( 'header-date' )
+    line-height: 1.9
+
+
+  // Player Controls
   +e( 'controls' )
     display: flex
     flex-wrap: wrap
+    margin-left: 16px
 
 
   // Progress Bar
   +e( 'progress' )
     position: relative
-    flex: 1 1 100%
-    padding-top: 16px
-    padding-bottom: 16px
+
+    flex: 0 1 100%
 
 
   +e( 'tracker' )
     position: absolute
-    top: 50%
+    top: calc( 50% - 1px )
+    left: 1px
     z-index: 1
 
     width: 100%
@@ -35,34 +69,89 @@
 
 
   +e( 'slider' )
-    position: absolute
-    top: 50%
-
     width: 100%
-    height: 4px
     margin: 0
+    padding-top: 16px
+    padding-bottom: 16px
 
-    appearance: none
-    background: $color-black
-    border-radius: 5px
+    // Fix for FF unable to apply focus style bug
+    border: 1px solid $color-white
     cursor: pointer
-    transform: translateY( -50% )
     outline: none
+    // Removes default webkit styles
+    -webkit-appearance: none
+
+    // WebKit
+    &::-webkit-slider-runnable-track
+      width: 100%
+      height: 4px
+      background: $color-black
+      border: none
+      border-radius: 5px
 
     &::-webkit-slider-thumb
-      appearance: none
       width: 16px
       height: 16px
+      margin-top: -6px
+
+      -webkit-appearance: none
       border-radius: 50%
       background: $color-red
-      cursor: pointer
+
+
+    // Mozilla
+    &::-moz-range-track
+      width: 100%
+      height: 4px
+
+      background: $color-black
+      border: none
+      border-radius: 5px
 
     &::-moz-range-thumb
       width: 16px
       height: 16px
+
+      background: $color-red
+      border: none
+      border-radius: 50%
+
+    // Hide outline behind border
+    &:-moz-focusring
+      outline: 1px solid $color-white
+      outline-offset: -1px
+
+
+    // Microsoft (Warning: hacks)
+    &::-ms-track
+      width: 100%
+      height: 4px
+
+      // Remove bg colour from the track
+      // Use ms-fill-lower and ms-fill-upper instead
+      background: transparent
+      // Leave room for the larger thumb
+      // to overflow with a transparent border
+      border-color: transparent
+      border-width: 6px 0
+      // Remove default tick marks
+      color: transparent
+
+    &::-ms-fill-lower
+      background: $color-black
+      border-radius: 5px
+
+    &::-ms-fill-upper
+      background: $color-black
+      border-radius: 5px
+
+    &::-ms-thumb
+      width: 16px
+      height: 16px
+
+      border: none
       border-radius: 50%
       background: $color-red
-      cursor: pointer
 
 
   // PlayPause
@@ -79,10 +168,10 @@
   // Volume
   +e( 'volume' )
     position: relative
-    display: flex
-    align-items: center
-    width: 128px
+
+    flex: 0 0 128px
     margin-left: 16px
+
     cursor: pointer
 
 
@@ -99,43 +188,106 @@
     width: 96px
     height: 4px
 
-    background-color: $color-white
-    opacity: $hover-opacity
+    background-color: $color-green
     pointer-events: none
     transform: translateY( -50% ) scaleX( .1 )
     transform-origin: left
 
 
   +e( 'volume-slider' )
-    width: 96px
-    height: 4px
-    margin: 0
+    position: absolute
+    top: 50%
+    left: 32px
 
-    appearance: none
-    background: $color-black
-    border-radius: 5px
+    width: 96px
+    margin: 0
+    padding: 0
+
+    // Fix for FF unable to apply focus style bug
+    border: 1px solid $color-white
     cursor: pointer
     outline: none
+    transform: translateY( -50% )
+    // Removes default webkit styles
+    -webkit-appearance: none
+
+    // WebKit
+    &::-webkit-slider-runnable-track
+      width: 100%
+      height: 4px
+      background: $color-black
+      border: none
+      border-radius: 5px
 
     &::-webkit-slider-thumb
-      position: relative
-      z-index: 2
-
       width: 16px
       height: 16px
+      margin-top: -6px
 
-      appearance: none
-      background-color: $color-black
+      -webkit-appearance: none
       border-radius: 50%
-      cursor: pointer
+      background-color: $color-green
+
+
+    // Mozilla
+    &::-moz-range-track
+      width: 100%
+      height: 4px
+
+      background-color: $color-black
+      border: none
+      border-radius: 5px
 
     &::-moz-range-thumb
-      position: relative
-      z-index: 2
-
       width: 16px
       height: 16px
 
-      background-color: $color-black
+      background-color: $color-green
+      border: none
       border-radius: 50%
-      cursor: pointer
+
+    // Hide outline behind border
+    &:-moz-focusring
+      outline: 1px solid $color-white
+      outline-offset: -1px
+
+
+    // Microsoft (Warning: hacks)
+    &::-ms-track
+      width: 100%
+      height: 4px
+
+      // Remove bg colour from the track
+      // Use ms-fill-lower and ms-fill-upper instead
+      background: transparent
+      // Leave room for the larger thumb
+      // to overflow with a transparent border
+      border-color: transparent
+      border-width: 6px 0
+      // Remove default tick marks
+      color: transparent
+
+    &::-ms-fill-lower
+      background-color: $color-black
+      border-radius: 5px
+
+    &::-ms-fill-upper
+      background-color: $color-black
+      border-radius: 5px
+
+    &::-ms-thumb
+      width: 16px
+      height: 16px
+
+      border: none
+      border-radius: 50%
+      background-color: $color-green
+
+
+
+@media only screen and ( min-width: 640px )
+  .song
+    flex-wrap: nowrap
+
+    +e( 'content' )
+      margin-top: 0
