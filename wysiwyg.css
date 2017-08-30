@@ -1,0 +1,43 @@
+/* wysiwyg */
+h1, h2, h3,
+h4, h5, h6 {
+  color: inherit;
+  font-family: "Work Sans", Helvetica, Arial, sans-serif;
+  font-weight: 300;
+  line-height: 1.6em; }
+
+h1 {
+  font-size: 48px; }
+
+h2, h3 {
+  font-size: 32px; }
+
+h1, h2, h3 {
+  margin-top: 32px;
+  margin-bottom: 16px; }
+
+h4, h5, h6 {
+  margin-top: 16px;
+  font-size: 32px; }
+
+a {
+  color: #69c5b3;
+  text-decoration: none;
+  transition: opacity 120ms; }
+  a:hover, a:focus, a:active {
+    opacity: 0.7; }
+
+p,
+em,
+strong,
+time {
+  color: inherit;
+  font-family: "Work Sans", Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.9em; }
+  p:not(:last-of-type),
+  em:not(:last-of-type),
+  strong:not(:last-of-type),
+  time:not(:last-of-type) {
+    margin-bottom: 32px; }
