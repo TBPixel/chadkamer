@@ -112,7 +112,7 @@ time {
 /* CSS Modules */
 /* Site page modifications */
 .page {
-  background-color: #fbfcfb;
+  background-color: #23282E;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-stroke: 0.45px rgba(0, 0, 0, 0.1); }
@@ -138,7 +138,7 @@ time {
     -webkit-box-flex: 0;
     -ms-flex: 0 1 50%;
     flex: 0 1 50%;
-    color: #fbfcfb;
+    color: #F5F5F5;
     font-family: "Work Sans", Helvetica, Arial, sans-serif;
     font-size: 16px;
     font-weight: 400;
@@ -158,7 +158,7 @@ time {
     -webkit-box-flex: 0;
     -ms-flex: 0 1 50%;
     flex: 0 1 50%;
-    color: #503a43;
+    color: #F5F5F5;
     font-family: "Work Sans", Helvetica, Arial, sans-serif;
     font-size: 16px;
     font-weight: 400;
@@ -209,7 +209,7 @@ time {
     max-width: 900px;
     height: calc( 75vh - 256px);
     margin: 32px;
-    color: #fbfcfb;
+    color: #F5F5F5;
     font-family: "Work Sans", Helvetica, Arial, sans-serif;
     font-size: 32px;
     font-weight: 300; }
@@ -220,7 +220,7 @@ time {
     bottom: 7.5%;
     left: 0;
     z-index: 0;
-    background-color: #d34251; }
+    background-color: #3898DE; }
 
 @media only screen and (min-width: 640px) {
   .hero__title {
@@ -243,6 +243,7 @@ time {
     margin-top: 8px;
     margin-bottom: 32px;
     padding-bottom: 16px;
+    color: #F5F5F5;
     font-weight: 300;
     letter-spacing: 4px;
     text-align: center;
@@ -255,13 +256,14 @@ time {
       left: 50%;
       width: 10%;
       height: 4px;
-      background-color: #503a43;
+      background-color: #F5F5F5;
       -webkit-transform: translateX(-50%);
       transform: translateX(-50%); }
   .home-section__content {
     max-width: 900px;
     margin-left: auto;
-    margin-right: auto; }
+    margin-right: auto;
+    color: #F5F5F5; }
     .home-section__content--contact {
       margin-bottom: 64px; }
   .home-section__button {
@@ -272,7 +274,7 @@ time {
     margin-right: auto;
     padding: 32px 16px;
     background-color: #69c5b3;
-    color: #fbfcfb;
+    color: #F5F5F5;
     font-family: "Work Sans", Helvetica, Arial, sans-serif;
     font-weight: 700;
     letter-spacing: 2px;
@@ -309,10 +311,13 @@ time {
   .song__header-title {
     margin-top: 0;
     margin-bottom: 0;
+    color: #F5F5F5;
     line-height: 1; }
   .song__header-album {
+    color: #F5F5F5;
     line-height: 1.9; }
   .song__header-date {
+    color: #F5F5F5;
     line-height: 1.9; }
   .song__controls {
     display: -webkit-box;
@@ -333,7 +338,7 @@ time {
     z-index: 1;
     width: 100%;
     height: 4px;
-    background-color: #d34251;
+    background-color: #3898DE;
     pointer-events: none;
     -webkit-transform: translateY(-50%) scaleX(0);
     transform: translateY(-50%) scaleX(0);
@@ -344,14 +349,15 @@ time {
     margin: 0;
     padding-top: 16px;
     padding-bottom: 16px;
-    border: 1px solid #fbfcfb;
+    border: 1px solid #23282E;
+    background-color: #23282E;
     cursor: pointer;
     outline: none;
     -webkit-appearance: none; }
     .song__slider::-webkit-slider-runnable-track {
       width: 100%;
       height: 4px;
-      background: #503a43;
+      background: #F5F5F5;
       border: none;
       border-radius: 5px; }
     .song__slider::-webkit-slider-thumb {
@@ -360,21 +366,21 @@ time {
       margin-top: -6px;
       -webkit-appearance: none;
       border-radius: 50%;
-      background: #d34251; }
+      background: #3898DE; }
     .song__slider::-moz-range-track {
       width: 100%;
       height: 4px;
-      background: #503a43;
+      background: #F5F5F5;
       border: none;
       border-radius: 5px; }
     .song__slider::-moz-range-thumb {
       width: 16px;
       height: 16px;
-      background: #d34251;
+      background: #3898DE;
       border: none;
       border-radius: 50%; }
     .song__slider:-moz-focusring {
-      outline: 1px solid #fbfcfb;
+      outline: 1px solid #F5F5F5;
       outline-offset: -1px; }
     .song__slider::-ms-track {
       width: 100%;
@@ -384,23 +390,24 @@ time {
       border-width: 6px 0;
       color: transparent; }
     .song__slider::-ms-fill-lower {
-      background: #503a43;
+      background: #F5F5F5;
       border-radius: 5px; }
     .song__slider::-ms-fill-upper {
-      background: #503a43;
+      background: #F5F5F5;
       border-radius: 5px; }
     .song__slider::-ms-thumb {
       width: 16px;
       height: 16px;
       border: none;
       border-radius: 50%;
-      background: #d34251; }
+      background: #3898DE; }
   .song__button {
     -webkit-box-flex: 0;
     -ms-flex: 0 0 64px;
     flex: 0 0 64px;
     padding: 0 16px;
     background-color: transparent;
+    color: #F5F5F5;
     border: none;
     cursor: pointer;
     outline: none; }
@@ -414,7 +421,8 @@ time {
   .song__volume-icon {
     -webkit-box-flex: 0;
     -ms-flex: 0 0 32px;
-    flex: 0 0 32px; }
+    flex: 0 0 32px;
+    color: #F5F5F5; }
   .song__volume-tracker {
     position: absolute;
     top: 50%;
@@ -435,7 +443,7 @@ time {
     width: 96px;
     margin: 0;
     padding: 0;
-    border: 1px solid #fbfcfb;
+    border: 1px solid #23282E;
     cursor: pointer;
     outline: none;
     -webkit-transform: translateY(-50%);
@@ -444,7 +452,7 @@ time {
     .song__volume-slider::-webkit-slider-runnable-track {
       width: 100%;
       height: 4px;
-      background: #503a43;
+      background: #F5F5F5;
       border: none;
       border-radius: 5px; }
     .song__volume-slider::-webkit-slider-thumb {
@@ -457,7 +465,7 @@ time {
     .song__volume-slider::-moz-range-track {
       width: 100%;
       height: 4px;
-      background-color: #503a43;
+      background-color: #F5F5F5;
       border: none;
       border-radius: 5px; }
     .song__volume-slider::-moz-range-thumb {
@@ -467,7 +475,7 @@ time {
       border: none;
       border-radius: 50%; }
     .song__volume-slider:-moz-focusring {
-      outline: 1px solid #fbfcfb;
+      outline: 1px solid #F5F5F5;
       outline-offset: -1px; }
     .song__volume-slider::-ms-track {
       width: 100%;
@@ -477,10 +485,10 @@ time {
       border-width: 6px 0;
       color: transparent; }
     .song__volume-slider::-ms-fill-lower {
-      background-color: #503a43;
+      background-color: #F5F5F5;
       border-radius: 5px; }
     .song__volume-slider::-ms-fill-upper {
-      background-color: #503a43;
+      background-color: #F5F5F5;
       border-radius: 5px; }
     .song__volume-slider::-ms-thumb {
       width: 16px;
