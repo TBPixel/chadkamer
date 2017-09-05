@@ -6,7 +6,7 @@
   +e( 'icon' )
     display: block
 
-    color: $color-green
+    color: $color-primary
     text-align: center
 
 
@@ -17,6 +17,7 @@
     margin-bottom: 32px
     padding-bottom: 16px
 
+    color: $color-foreground
     font-weight: $font-light
     letter-spacing: 4px
     text-align: center
@@ -32,7 +33,7 @@
       width: 10%
       height: 4px
 
-      background-color: $color-black
+      background-color: $color-foreground
       transform: translateX( -50% )
 
 
@@ -40,6 +41,8 @@
     max-width: 900px
     margin-left: auto
     margin-right: auto
+
+    color: $color-foreground
 
     +m( 'contact' )
       margin-bottom: 64px
@@ -53,9 +56,9 @@
     margin-right: auto
     padding: 32px 16px
 
-    background-color: $color-green
+    background-color: $color-primary
 
-    color: $color-white
+    color: $color-foreground
     font-family: $font-family
     font-weight: $font-bold
     letter-spacing: 2px

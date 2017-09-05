@@ -29,14 +29,17 @@
   +e( 'header-title' )
     margin-top: 0
     margin-bottom: 0
+    color: $color-foreground
     line-height: 1
 
 
   +e( 'header-album' )
+    color: $color-foreground
     line-height: 1.9
 
 
   +e( 'header-date' )
+    color: $color-foreground
     line-height: 1.9
 
 
@@ -63,7 +66,7 @@
     width: 100%
     height: 4px
 
-    background-color: $color-red
+    background-color: $color-accent
     pointer-events: none
     transform: translateY( -50% ) scaleX( 0 )
     transform-origin: left
@@ -76,7 +79,8 @@
     padding-bottom: 16px
 
     // Fix for FF unable to apply focus style bug
-    border: 1px solid $color-white
+    border: 1px solid $color-background
+    background-color: $color-background
     cursor: pointer
     outline: none
     // Removes default webkit styles
@@ -86,7 +90,7 @@
     &::-webkit-slider-runnable-track
       width: 100%
       height: 4px
-      background: $color-black
+      background: $color-foreground
       border: none
       border-radius: 5px
 
@@ -97,7 +101,7 @@
 
       -webkit-appearance: none
       border-radius: 50%
-      background: $color-red
+      background: $color-accent
 
 
     // Mozilla
@@ -105,7 +109,7 @@
       width: 100%
       height: 4px
 
-      background: $color-black
+      background: $color-foreground
       border: none
       border-radius: 5px
 
@@ -113,13 +117,13 @@
       width: 16px
       height: 16px
 
-      background: $color-red
+      background: $color-accent
       border: none
       border-radius: 50%
 
     // Hide outline behind border
     &:-moz-focusring
-      outline: 1px solid $color-white
+      outline: 1px solid $color-foreground
       outline-offset: -1px
 
 
@@ -139,11 +143,11 @@
       color: transparent
 
     &::-ms-fill-lower
-      background: $color-black
+      background: $color-foreground
       border-radius: 5px
 
     &::-ms-fill-upper
-      background: $color-black
+      background: $color-foreground
       border-radius: 5px
 
     &::-ms-thumb
@@ -152,7 +156,7 @@
 
       border: none
       border-radius: 50%
-      background: $color-red
+      background: $color-accent
 
 
   // PlayPause
@@ -161,6 +165,7 @@
     padding: 0 16px
 
     background-color: transparent
+    color: $color-foreground
     border: none
     cursor: pointer
     outline: none
@@ -178,6 +183,7 @@
 
   +e( 'volume-icon' )
     flex: 0 0 32px
+    color: $color-foreground
 
 
   +e( 'volume-tracker' )
@@ -189,7 +195,7 @@
     width: 96px
     height: 4px
 
-    background-color: $color-green
+    background-color: $color-primary
     pointer-events: none
     transform: translateY( -50% ) scaleX( .1 )
     transform-origin: left
@@ -205,7 +211,7 @@
     padding: 0
 
     // Fix for FF unable to apply focus style bug
-    border: 1px solid $color-white
+    border: 1px solid $color-background
     cursor: pointer
     outline: none
     transform: translateY( -50% )
@@ -216,7 +222,7 @@
     &::-webkit-slider-runnable-track
       width: 100%
       height: 4px
-      background: $color-black
+      background: $color-foreground
       border: none
       border-radius: 5px
 
@@ -227,7 +233,7 @@
 
       -webkit-appearance: none
       border-radius: 50%
-      background-color: $color-green
+      background-color: $color-primary
 
 
     // Mozilla
@@ -235,7 +241,7 @@
       width: 100%
       height: 4px
 
-      background-color: $color-black
+      background-color: $color-foreground
       border: none
       border-radius: 5px
 
@@ -243,13 +249,13 @@
       width: 16px
       height: 16px
 
-      background-color: $color-green
+      background-color: $color-primary
       border: none
       border-radius: 50%
 
     // Hide outline behind border
     &:-moz-focusring
-      outline: 1px solid $color-white
+      outline: 1px solid $color-foreground
       outline-offset: -1px
 
 
@@ -269,11 +275,11 @@
       color: transparent
 
     &::-ms-fill-lower
-      background-color: $color-black
+      background-color: $color-foreground
       border-radius: 5px
 
     &::-ms-fill-upper
-      background-color: $color-black
+      background-color: $color-foreground
       border-radius: 5px
 
     &::-ms-thumb
@@ -282,7 +288,7 @@
 
       border: none
       border-radius: 50%
-      background-color: $color-green
+      background-color: $color-primary
 
 
 
