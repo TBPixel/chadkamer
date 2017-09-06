@@ -43,10 +43,10 @@
     {
       // Nodes
       this.container      = container;
-      this.playpause      = container.querySelector( '.js-playpause' );
       this.progress       = container.querySelector( '.js-progress' );
       this.tracker        = this.progress.querySelector( '.js-tracker' );
       this.slider         = this.progress.querySelector( '.js-slider' );
+      this.playpause      = container.querySelector( '.js-playpause' );
       this.volume         = container.querySelector( '.js-volume' );
       this.volume_tracker = this.volume.querySelector( '.js-volume-tracker' );
       this.volume_slider  = this.volume.querySelector( '.js-volume-slider' );
