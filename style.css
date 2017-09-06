@@ -142,7 +142,8 @@ time {
     font-family: "Work Sans", Helvetica, Arial, sans-serif;
     font-size: 16px;
     font-weight: 400;
-    text-align: center; }
+    text-align: center;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2); }
 
 /* Site Social Navigation */
 .social {
@@ -212,7 +213,8 @@ time {
     color: #F5F5F5;
     font-family: "Work Sans", Helvetica, Arial, sans-serif;
     font-size: 32px;
-    font-weight: 300; }
+    font-weight: 300;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2); }
   .hero__background {
     position: absolute;
     top: 0;
@@ -279,6 +281,7 @@ time {
     font-weight: 700;
     letter-spacing: 2px;
     text-align: center;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
     text-transform: uppercase; }
 
 /* Audio Player */
