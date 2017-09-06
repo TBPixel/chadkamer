@@ -6,6 +6,15 @@
 
   display: flex
 
+  +mouse-action
+    & > .nav__item:not(:hover)
+      opacity: $hover-opacity
+
+    & > .nav__item
+      +mouse-action
+        opacity: 1
+
+
   +e( 'item' )
     display: block
     padding: 16px
