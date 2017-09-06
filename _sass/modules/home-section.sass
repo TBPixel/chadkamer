@@ -57,6 +57,8 @@
     padding: 32px 16px
 
     background-color: $color-primary
+    box-shadow: 0 2px 4px rgba( 0, 0, 0, .2 )
+    transition: transform $transition-dur
 
     color: $color-foreground
     font-family: $font-family
@@ -65,3 +67,15 @@
     text-align: center
     text-shadow: 0 1px 2px rgba( 0, 0, 0, 0.2 )
     text-transform: uppercase
+
+    +psuedo-background
+      box-shadow: 0 4px 8px rgba( 0, 0, 0, .2 )
+      opacity: 0
+      transition: opacity $transition-dur
+
+    +mouse-action
+      opacity: 1 // Disable default opacity change for links
+      transform: translateY( -1px )
+
+      &::before
+        opacity: 1
