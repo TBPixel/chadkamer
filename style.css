@@ -205,15 +205,10 @@ time {
   .hero__title {
     position: relative;
     z-index: 3;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    align-items: center;
     max-width: 900px;
-    height: calc( 75vh - 256px);
-    margin: 32px;
+    margin: 0 32px;
+    padding-top: 96px;
+    padding-bottom: 128px;
     color: #F5F5F5;
     font-family: "Work Sans", Helvetica, Arial, sans-serif;
     font-size: 32px;
@@ -230,12 +225,13 @@ time {
 
 @media only screen and (min-width: 640px) {
   .hero__title {
-    margin: 64px;
+    margin: 0 64px;
     font-size: 48px; } }
 
 @media only screen and (min-width: 960px) {
   .hero__title {
-    margin: 0 auto; } }
+    margin: 0 auto;
+    padding-top: 128px; } }
 
 /* Home Sections */
 .home-section {
