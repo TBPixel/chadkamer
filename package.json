@@ -1,0 +1,23 @@
+{
+  "name": "chadkamer",
+  "version": "1.0.0",
+  "description": "Gulp build process",
+  "main": "gulpfile.js",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TBPixel/chadkamer.com.git"
+  },
+  "author": "Tony Barry",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TBPixel/chadkamer.com/issues"
+  },
+  "homepage": "https://github.com/TBPixel/chadkamer.com#readme",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^4.0.0",
+    "gulp-livereload": "^3.8.1",
+    "gulp-sass": "^3.1.0"
+  }
+}
